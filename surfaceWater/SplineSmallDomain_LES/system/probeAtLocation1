@@ -4,19 +4,20 @@
    \\    /   O peration     | Website:  https://openfoam.org
     \\  /    A nd           | Version:  7
      \\/     M anipulation  |
+-------------------------------------------------------------------------------
+Description
+    Writes out values of fields from cells nearest to specified locations.
+
 \*---------------------------------------------------------------------------*/
-FoamFile
-{
-    version     2.0;
-    format      ascii;
-    class       dictionary;
-    object      decomposeParDict;
-}
 
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+#includeEtc "caseDicts/postProcessing/probes/probes.cfg"
 
-numberOfSubdomains 12;
+fields (U);
 
-method          scotch;
+probeLocations
+(
+//Location 1
+    (0.10 0.01 0.145)
+);
 
 // ************************************************************************* //
