@@ -35,6 +35,16 @@ points
 
 maxDistance 0.01;
 
+
+
+// Sampling and I/O settings
+#includeEtc "caseDicts/postProcessing/graphs/sampleDict.cfg"
+
+interpolationScheme cell;
+writeControl	timeStep;
+writeInterval	1;
+setFormat raw;
+
 patches     ("bottom");
 
 #includeEtc "caseDicts/postProcessing/probes/boundaryProbes.cfg"

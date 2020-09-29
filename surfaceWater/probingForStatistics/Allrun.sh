@@ -1,5 +1,5 @@
 decomposePar
-mpirun -np 4 pimpleWithG -parallel > log
+mpirun -np 8 pimpleWithG -parallel > log
 reconstructPar
 foamToVTK
 rm -r processor*

@@ -1,2 +1,5 @@
-surfaceWater/SplineSmallDomain_LES/VTK/
+# Ignore VTK folders
 **/VTK/
+
+# Ignore results but leave 0/ folder
+**/?.??/
