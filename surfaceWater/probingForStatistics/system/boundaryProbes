@@ -35,8 +35,6 @@ points
 
 maxDistance 0.01;
 
-
-
 // Sampling and I/O settings
 #includeEtc "caseDicts/postProcessing/graphs/sampleDict.cfg"
 
