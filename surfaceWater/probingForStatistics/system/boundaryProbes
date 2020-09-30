@@ -39,12 +39,15 @@ maxDistance 0.01;
 #includeEtc "caseDicts/postProcessing/graphs/sampleDict.cfg"
 
 interpolationScheme cell;
-writeControl	timeStep;
-writeInterval	1;
 setFormat raw;
 
 patches     ("bottom");
 
 #includeEtc "caseDicts/postProcessing/probes/boundaryProbes.cfg"
+
+executeControl  timeStep;
+writeControl	timeStep;
+writeInterval	1;
+
 
 // ************************************************************************* //

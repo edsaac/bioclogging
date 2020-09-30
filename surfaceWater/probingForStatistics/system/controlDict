@@ -50,7 +50,7 @@ functions
   //Line graphs
 //  #includeFunc  lineAtTop
 //  #includeFunc  lineAtMid
-  #includeFunc  lineAtBot
+//  #includeFunc  lineAtBot
 
   //Boundary stuff
   #includeFunc boundaryProbes
