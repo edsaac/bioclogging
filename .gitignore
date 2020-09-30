@@ -9,3 +9,6 @@
 
 # Ignore logs
 **/log
+
+# Ignore txts 
+**/*.txt
