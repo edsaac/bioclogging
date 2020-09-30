@@ -12,7 +12,7 @@ def rollingAverage(X):
 		AV[i] = np.mean(X[:i])
 	return AV
 
-FOLDER = "./organizedData/boundaryProbes/"
+FOLDER = "./organizedData/"
 FILELIST = listdir(FOLDER)
 FILELIST.sort()
 
@@ -22,7 +22,7 @@ ncols=len(FILELIST)
 gs1 = gs.GridSpec(nrows=ncols,ncols=1)
 
 counter = 0
-ax0 = plt.subplot(gs1[0,0])
+ax0 = plt.subplot(gs1[counter,0])
 
 for TXTFILE in FILELIST:
 	ax1 = plt.subplot(gs1[counter,0],sharex=ax0)
