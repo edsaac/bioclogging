@@ -1,14 +1,17 @@
+## How to use:
+## ./pointFiles.sh <pathToFolder> <nPointsProbed>
+
 FOLDER=$1
 LINES=$2
 
 # Note to self: Remember to chech the lines, it aint always 98
 
-mkdir ./organizedData/$FOLDER/
+mkdir ./organizedData/
 
 for LINE in $(seq -s ' ' 1 $LINES)
 do
-  resultFile="./probeAt_$(printf "%04d" $LINE).txt"
-  touch resultFile
+  resultFile="probeAt_$(printf "%04d" $LINE).txt"
+  
   for TIME in $(ls -v $FOLDER)
   do
     # currentFile="./$FOLDER/$TIME/line_U.xy"
@@ -21,7 +24,7 @@ do
 	echo $TIME $(sed "$LINE!d" $currentFile | \
 	sed -e "s/\s\+/ /g" | \
 	cut -d " " -f 4) >> \
-	./organizedData/$FOLDER/$resultFile
+	./organizedData/$resultFile
 
 	echo $TIME
   done
