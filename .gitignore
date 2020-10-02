@@ -11,4 +11,4 @@
 **/log
 
 # Ignore txts 
-**/*.txt
+**/*.txt*

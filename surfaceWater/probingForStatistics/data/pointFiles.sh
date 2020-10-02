@@ -6,9 +6,10 @@ LINES=$2
 
 # Note to self: Remember to chech the lines, it aint always 98
 
-mkdir ./organizedData/
+#mkdir ./organizedData/
 
-for LINE in $(seq -s ' ' 1 $LINES)
+#for LINE in $(seq -s ' ' 1 $LINES)
+for LINE in $LINES
 do
   resultFile="probeAt_$(printf "%04d" $LINE).txt"
   
@@ -26,6 +27,6 @@ do
 	cut -d " " -f 4) >> \
 	./organizedData/$resultFile
 
-	echo $TIME
+	#echo $TIME
   done
 done

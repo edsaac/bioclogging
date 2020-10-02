@@ -32,9 +32,8 @@ for TXTFILE in FILELIST:
 	T = TIMESERIE[0]
 	ax1.boxplot(U,positions=[-1])
 
-	
-	ax1.plot(T,U,lw=1,color="pink",alpha=0.6)
-	ax1.plot(T,rollingAverage(U),lw=2,color="purple",alpha=1)
+#	ax1.plot(T,U,lw=1,color="pink",alpha=0.6)
+#	ax1.plot(T,rollingAverage(U),lw=2,color="purple",alpha=1)
 
 	u = U - np.mean(U)
 	ututs = np.correlate(u,u,mode="same")
