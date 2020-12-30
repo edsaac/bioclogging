@@ -1,5 +1,14 @@
 # Ignore VTK folders
 **/VTK/
-
+**/VTK*/
 # Ignore results but leave 0/ folder
-**/?.??/
+**/*.??/
+
+# Ignore postProcessing folder
+**/postProcessing/
+
+# Ignore logs
+**/log
+
+# Ignore txts 
+**/*.txt*
