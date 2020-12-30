@@ -12,3 +12,6 @@
 
 # Ignore txts 
 **/*.txt*
+
+# Ignore VSCode workspace
+**/*.code-workspace
