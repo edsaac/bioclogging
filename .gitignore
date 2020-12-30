@@ -4,6 +4,7 @@
 **/*.vtk
 
 # Ignore results but leave 0/ folder
+**/*.???/
 **/*.??/
 
 # Ignore postProcessing folder
