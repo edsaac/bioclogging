@@ -1,6 +1,8 @@
 # Ignore VTK folders
 **/VTK/
 **/VTK*/
+**/*.vtk
+
 # Ignore results but leave 0/ folder
 **/*.??/
 
