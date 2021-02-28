@@ -1,0 +1,22 @@
+# Ignore VTK folders
+**/VTK/
+**/VTK*/
+**/*.vtk
+
+# Ignore results but leave 0/ folder
+**/[0-9]*/
+**/[0-9]*.[0-9]*/
+!**/[0-9]*[a-zA-Z]*/
+!**/0/
+# Ignore postProcessing folder
+**/postProcessing/
+
+# Ignore logs
+**/log
+
+# Ignore txts 
+**/*.txt*
+**/*.csv*
+
+# Ignore VSCode workspace
+**/*.code-workspace

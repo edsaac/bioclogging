@@ -1,0 +1,89 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  7
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      h;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 0 0 0 0 0];
+
+internalField   uniform 0;
+
+boundaryField
+{
+    front
+    {
+        type            empty;
+    }
+
+    back
+    {
+        type            empty;
+    }
+
+    right
+    {
+  	type		cyclicAMI;
+    }
+
+    left
+    {
+  	type		cyclicAMI;
+    }
+
+    top
+    {
+/*        type            fixedProfile;
+        profile         csvFile;
+
+        profileCoeffs
+        {
+            nHeaderLine         0;          // Number of header lines
+            refColumn           0;          // Reference column index
+            componentColumns    (1); 	    // Component column indices
+            separator           ",";        // Optional (defaults to ",")
+            mergeSeparators     no;         // Merge multiple separators
+            file                "BoundaryTop.csv";  // name of csv data file
+            outOfBounds         clamp;      // Optional out-of-bounds handling
+            interpolationScheme linear;     // Optional interpolation scheme
+        }
+        direction        (1 0 0);
+        origin           0;
+    }*/
+
+/*
+	type		fixedProfile;
+	profile		csvFile;
+	profileCoeffs
+	{
+		nHeaderLine	1;
+		refColumn	0;
+		componentColumns 1(1);
+		separator	",";
+		mergeSeparators     no;
+		file		"./h.Boundary.Top.csv";
+		interpolationScheme linear; //spline
+		outOfBounds         clamp;//error;
+	}
+	direction	(1 0 0);
+	origin		0.0;*/
+
+        type            timeVaryingMappedFixedValue;
+    }
+
+    bottom
+    {
+        type            zeroGradient;
+    }
+}
+
+// ************************************************************************* //

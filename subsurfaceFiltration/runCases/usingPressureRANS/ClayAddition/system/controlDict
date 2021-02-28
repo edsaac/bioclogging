@@ -1,0 +1,71 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  7
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     filtrationEd;
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         1123200;
+
+deltaT       200;
+
+//endTime			86400;
+//endTime         172800;
+
+//deltaT          0.5;
+
+writeControl    runTime;
+
+writeInterval   21600;
+//writeInterval   3600;
+
+purgeWrite      0;
+writeFormat     ascii;
+writePrecision  6;
+writeCompression off;
+timeFormat      fixed; //general
+timePrecision   1;
+
+//These are not working yet
+runTimeModifiable true;
+adjustTimeStep  yes;
+maxCo           1.0;
+
+functions
+{
+
+  //Real-time Probes
+  /*
+  #includeFunc  probeAtLocation1
+  #includeFunc  probeAtLocation2
+  #includeFunc  probeAtLocation3
+  #includeFunc  probeAtLocation4
+  */
+
+  //Line graphs
+  #includeFunc  lineAtLocation1
+  #includeFunc  lineAtLocation2
+  #includeFunc  lineAtLocation3
+  #includeFunc  lineAtLocation4
+  
+}
+
+// ************************************************************************* //
