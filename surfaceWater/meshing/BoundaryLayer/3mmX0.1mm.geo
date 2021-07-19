@@ -23,7 +23,7 @@ meshSizeX = 0.30 * convertToMeter;
 meshSizeY = 0.30 * convertToMeter;
 
 
-nElementsX = Ceil(Lee+Stoss/(meshSizeX));
+nElementsX = Ceil((Lee+Stoss)/meshSizeX);
 nElementsY = Ceil(Yd/meshSizeY);
 
 // This growth ratio gives a del0 = 0.01mm
