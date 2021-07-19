@@ -18,5 +18,8 @@
 **/*.txt*
 **/*.csv*
 
+# Ignore mesh
+**/*.msh*
+
 # Ignore VSCode workspace
 **/*.code-workspace
