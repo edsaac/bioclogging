@@ -21,7 +21,7 @@ Width = 29.00 * convertToMeter;
 //### Mesh Size #####################
 meshSizeX = 0.30 * convertToMeter;
 meshSizeY = 0.30 * convertToMeter;
-
+meshSizeZ = 0;
 
 nElementsX = Ceil(Lee+Stoss/(meshSizeX));
 nElementsY = Ceil(Yd/meshSizeY);

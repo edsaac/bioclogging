@@ -6,7 +6,7 @@ Purpose: Mesh to be used in a filtration model of subsurface water under sand du
 Mesh.SaveAll = 0;
 Mesh.MshFileVersion = 2.2;
 
-convertToMeter = 1.0/1.0;
+convertToMeter = 1.0/100.0;
 
 //#### Dimensions ####################
 
@@ -14,7 +14,7 @@ Hd = 1.50 * convertToMeter;
 Yd = -20.0 * convertToMeter;
 Lee = 5.00 * convertToMeter;
 Stoss = 10.00 * convertToMeter;
-meshSize = 0.25 * convertToMeter;
+meshSize = 0.30 * convertToMeter;
 Width = 29.00 * convertToMeter;
 
 // To get a cell of 0.20cm in the interface:
@@ -35,7 +35,8 @@ Line(2) = {4,5};
 Line(3) = {5,6,7,8};
 Line(4) = {8,1};
 
-nElementsX = Ceil(Lee+Stoss/meshSize);
+nElementsX = Ceil((Lee+Stoss)/meshSize);
+Printf("%f",nElementsX);
 nElementsY = Ceil(Fabs(Yd)/meshSize);
 
 Transfinite Line{1} = nElementsX;
