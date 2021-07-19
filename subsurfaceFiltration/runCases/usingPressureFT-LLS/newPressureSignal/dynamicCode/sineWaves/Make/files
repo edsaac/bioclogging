@@ -1,6 +1,6 @@
 /* dynamicCode:
- * SHA1 = 80c7a98a7e14909168b7aad484662315e9b1aa8d
+ * SHA1 = c9941dd59a63a00e990a22f2dd1508b51dfa96b2
  */
 fixedValueFvPatchFieldTemplate.C
 
-LIB = $(PWD)/../platforms/$(WM_OPTIONS)/lib/libsineWaves_80c7a98a7e14909168b7aad484662315e9b1aa8d
+LIB = $(PWD)/../platforms/$(WM_OPTIONS)/lib/libsineWaves_c9941dd59a63a00e990a22f2dd1508b51dfa96b2

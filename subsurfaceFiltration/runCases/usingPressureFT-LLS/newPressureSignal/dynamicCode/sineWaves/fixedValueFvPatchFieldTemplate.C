@@ -30,7 +30,7 @@ License
 #include "surfaceFields.H"
 #include "unitConversion.H"
 //{{{ begin codeInclude
-#line 83 "/home/edwin/NUmodel/bioclogging/subsurfaceFiltration/runCases/usingPressureFT-LLS/newPressureSignal/0/h.boundaryField.top"
+#line 83 "/home/eyc7250/RunCases/bioclogging/subsurfaceFiltration/runCases/usingPressureFT-LLS/newPressureSignal/0/h.boundaryField.top"
 #include "fvCFD.H"
             #include <iostream>
             #include <math.h>
@@ -57,11 +57,11 @@ namespace Foam
 extern "C"
 {
     // dynamicCode:
-    // SHA1 = 80c7a98a7e14909168b7aad484662315e9b1aa8d
+    // SHA1 = c9941dd59a63a00e990a22f2dd1508b51dfa96b2
     //
     // unique function name that can be checked if the correct library version
     // has been loaded
-    void sineWaves_80c7a98a7e14909168b7aad484662315e9b1aa8d(bool load)
+    void sineWaves_c9941dd59a63a00e990a22f2dd1508b51dfa96b2(bool load)
     {
         if (load)
         {
@@ -84,7 +84,7 @@ makeRemovablePatchTypeField
 
 
 const char* const sineWavesFixedValueFvPatchScalarField::SHA1sum =
-    "80c7a98a7e14909168b7aad484662315e9b1aa8d";
+    "c9941dd59a63a00e990a22f2dd1508b51dfa96b2";
 
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
@@ -100,7 +100,7 @@ sineWavesFixedValueFvPatchScalarField
 {
     if (false)
     {
-        Info<<"construct sineWaves sha1: 80c7a98a7e14909168b7aad484662315e9b1aa8d"
+        Info<<"construct sineWaves sha1: c9941dd59a63a00e990a22f2dd1508b51dfa96b2"
             " from patch/DimensionedField\n";
     }
 }
@@ -119,7 +119,7 @@ sineWavesFixedValueFvPatchScalarField
 {
     if (false)
     {
-        Info<<"construct sineWaves sha1: 80c7a98a7e14909168b7aad484662315e9b1aa8d"
+        Info<<"construct sineWaves sha1: c9941dd59a63a00e990a22f2dd1508b51dfa96b2"
             " from patch/DimensionedField/mapper\n";
     }
 }
@@ -137,7 +137,7 @@ sineWavesFixedValueFvPatchScalarField
 {
     if (false)
     {
-        Info<<"construct sineWaves sha1: 80c7a98a7e14909168b7aad484662315e9b1aa8d"
+        Info<<"construct sineWaves sha1: c9941dd59a63a00e990a22f2dd1508b51dfa96b2"
             " from patch/dictionary\n";
     }
 }
@@ -153,7 +153,7 @@ sineWavesFixedValueFvPatchScalarField
 {
     if (false)
     {
-        Info<<"construct sineWaves sha1: 80c7a98a7e14909168b7aad484662315e9b1aa8d"
+        Info<<"construct sineWaves sha1: c9941dd59a63a00e990a22f2dd1508b51dfa96b2"
             " as copy\n";
     }
 }
@@ -170,7 +170,7 @@ sineWavesFixedValueFvPatchScalarField
 {
     if (false)
     {
-        Info<<"construct sineWaves sha1: 80c7a98a7e14909168b7aad484662315e9b1aa8d "
+        Info<<"construct sineWaves sha1: c9941dd59a63a00e990a22f2dd1508b51dfa96b2 "
             "as copy/DimensionedField\n";
     }
 }
@@ -183,7 +183,7 @@ sineWavesFixedValueFvPatchScalarField::
 {
     if (false)
     {
-        Info<<"destroy sineWaves sha1: 80c7a98a7e14909168b7aad484662315e9b1aa8d\n";
+        Info<<"destroy sineWaves sha1: c9941dd59a63a00e990a22f2dd1508b51dfa96b2\n";
     }
 }
 
@@ -199,11 +199,11 @@ void sineWavesFixedValueFvPatchScalarField::updateCoeffs()
 
     if (false)
     {
-        Info<<"updateCoeffs sineWaves sha1: 80c7a98a7e14909168b7aad484662315e9b1aa8d\n";
+        Info<<"updateCoeffs sineWaves sha1: c9941dd59a63a00e990a22f2dd1508b51dfa96b2\n";
     }
 
 //{{{ begin code
-    #line 51 "/home/edwin/NUmodel/bioclogging/subsurfaceFiltration/runCases/usingPressureFT-LLS/newPressureSignal/0/h.boundaryField.top"
+    #line 51 "/home/eyc7250/RunCases/bioclogging/subsurfaceFiltration/runCases/usingPressureFT-LLS/newPressureSignal/0/h.boundaryField.top"
 // Call geometry
             const fvPatch& boundaryPatch = patch(); 
             // Initialize field
