@@ -42,7 +42,7 @@ Temp      Temp      [0 0 0 1 0 0 0]     298.0;
 
 //Filtration efficiency
 alpha     alpha     [0 0 0 0 0 0 0]     0.05;
-Kmin      Kmin      [0 1 -1 0 0 0 0]    1.0E-10;
+Kmin      Kmin      [0 1 -1 0 0 0 0]    1.0E-8;
 thetaMin  thetaMin  [0 0 0 0 0 0 0]     0.000;
 
 //Underflow
