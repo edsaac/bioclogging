@@ -84,7 +84,7 @@ boundaryField
             #include <iostream>
             #include <math.h>
             //Change this commment to mpdify the hash
-            //and force a recompile (U..U)
+            //and force a recompile (kte_g)
             #include "calc_signal.H"
 
         #};

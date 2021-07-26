@@ -32,8 +32,8 @@ SourceFiles
 
 \*---------------------------------------------------------------------------*/
 
-#ifndef fixedValueFvPatchTemplateScalarField_H
-#define fixedValueFvPatchTemplateScalarField_H
+#ifndef fixedValueFvPatchFieldTemplate_H
+#define fixedValueFvPatchFieldTemplate_H
 
 #include "fixedValueFvPatchFields.H"
 
@@ -85,7 +85,7 @@ public:
             const fvPatchFieldMapper&
         );
 
-        //- Construct as copy
+        //- Copy constructor
         sineWavesFixedValueFvPatchScalarField
         (
             const sineWavesFixedValueFvPatchScalarField&
@@ -100,7 +100,7 @@ public:
             );
         }
 
-        //- Construct as copy setting internal field reference
+        //- Copy constructor setting internal field reference
         sineWavesFixedValueFvPatchScalarField
         (
             const sineWavesFixedValueFvPatchScalarField&,
@@ -124,7 +124,7 @@ public:
     virtual ~sineWavesFixedValueFvPatchScalarField();
 
 
-    // Member functions
+    // Member Functions
 
         //- Update the coefficients associated with the patch field
         virtual void updateCoeffs();

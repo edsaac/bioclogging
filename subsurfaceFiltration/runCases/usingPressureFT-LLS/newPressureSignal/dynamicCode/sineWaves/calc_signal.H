@@ -10,7 +10,7 @@ scalar signalBuild(scalar Xm, scalar t){
   scalar LX  = 0.15;
   
   double freq   = 0.0;
-  double delf   = 0.007809935503481992;
+  double delf   = 0.010490823962563048;
   scalar signal = 0.0;
 
   // Mapper for X-coordinate
