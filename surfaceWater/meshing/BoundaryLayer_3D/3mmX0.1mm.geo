@@ -1,7 +1,8 @@
 /*
-Purpose: Mesh to be used in a LES/RANS flow simulation
+Purpose: Mesh to be used in a 3D LES/RANS flow simulation
 	of surface water over dunes following dimensions in
-	Fox et al. 2018 (WRR)
+	Fox et al. 2018 (WRR). It takes number of elements in each
+    direction as an "argument" rather than the size of the element.
 */
 
 // Options for export
@@ -65,7 +66,7 @@ Transfinite Surface {1} = {1,4,5,8};
 Recombine Surface {1};
 extrusionName[] = Extrude {0, 0, Width} {
     Surface{1};
-    Layers{1};
+    Layers{nElementsZ};
     Recombine;
   };
 
