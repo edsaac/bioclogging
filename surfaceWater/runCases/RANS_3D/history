@@ -1,0 +1,26 @@
+3mmx0.1mm
+  Replicates the RANS-2D simulation using that mesh resolution and
+  using a k-wSST turbulence model. Results are quite similar to the 
+  2D simulation. However, side boundaries are now walls, we should
+  capture that boundary layer as well. 
+
+3mmx0.1mmXBump
+  clone of previous one
+  Uses the same mesh resolution in the xy plane but uses a Bump for the
+  z-discretization. Results are similar than the previous case but residuals
+  seem lower. Boundary conditions for omega seem odd. Revised this valus
+  and change
+
+3mmx0.1mmxBumpxAlternativeSSTmm
+  clone of previous one
+  just as before but with different initial and boundary conditions for k
+  omega and nut. Also, used the tanh() smoother for the SST transition
+  between near-wall turbulence and inertial turbulence. Resulting U,p were
+  lower! Was it because of the tanh() smother?
+
+noBlend
+  clone of previous one
+  remove the tanh() smothing keyword from omega and nut initial/boundary
+  conditions Results are pretty much the same than the previous case. Then,
+  the boundary condition of omega and nut was driving the result :( 
+  Check their definitions to come up with a new experiment
