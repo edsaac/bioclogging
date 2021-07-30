@@ -24,7 +24,7 @@ sed -i "s/ /\n/g" $TIME_FILE
 # Create a coordinates file
 COORD_FILE=$OUTPUT_DIR/xyz.txt
 
-RAND_FILE=$INPUT_DIR/$(ls -v $INPUT_DIR | shuf -n 1)/points_h.xy
+RAND_FILE=$INPUT_DIR/$(ls -v $INPUT_DIR | shuf -n 1)/points_p.xy
 sed -e "s/\s\s*/ /g" $RAND_FILE | cut -d " " -f 1,2,3 > $COORD_FILE
 
 # Read each time and generate a pressure array
@@ -33,7 +33,7 @@ PRESSURE_FILE=$OUTPUT_DIR/p.txt
 
 for T in $TIMES
 do
-  P_FILE=$INPUT_DIR/$T/points_h.xy
+  P_FILE=$INPUT_DIR/$T/points_p.xy
   sed -e "s/\s\s*/ /g" $P_FILE | cut -d " " -f 4 | tr '\n' ' ' >> $PRESSURE_FILE
   echo "" >> $PRESSURE_FILE
 done
