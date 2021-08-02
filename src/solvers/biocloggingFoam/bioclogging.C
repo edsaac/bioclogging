@@ -63,12 +63,15 @@ int main(int argc, char *argv[])
 				IOobject::NO_READ,
 				IOobject::AUTO_WRITE
 			),
-	    	max(Kmin,(sqr(ds) * pow(theta,3) * rho * g) / (180.0 * pow(1-theta,2) * mu))
+	    	max(
+	    		Kmin,
+	    		(sqr(ds) * pow(theta,3) * rho * g) / (180.0 * pow(1-theta,2) * mu)
+	    		)
 		);
 
 		Info<< "Time = " << runTime.timeName() << nl << endl;
 
-		//Calculate hydraulic head
+		//Calculate hydraulic head using mass balance + Darcy's equation
 		while (simple.correctNonOrthogonal())
 		{
 			fvScalarMatrix FlowEquation
@@ -82,6 +85,7 @@ int main(int argc, char *argv[])
 			fvOptions.correct(h);
 		}
 
+		// U in this code refers to the Darcy velocity (a.k.a q)
 		volVectorField U
 		(
 			IOobject
@@ -99,55 +103,52 @@ int main(int argc, char *argv[])
 		#include "CourantNo.H"
 
 		// Field of Happel parameter As
-		volScalarField As
+		volScalarField log_As
 		(
-			As_Coeffs[0]*sqr(1/theta) + As_Coeffs[1]*(1/theta) + As_Coeffs[2]
+			log(As_Coeffs[0]*sqr(1/theta) + As_Coeffs[1]*(1/theta) + As_Coeffs[2])
 		);
 
 		// Peclét number field
-		volScalarField N_Peclet
-			(
-				(mag(U)*ds)/(DT*theta)
-			);
-
-		// Dispersion Coefficient
-		volScalarField DispersionCoeff
+		volScalarField log_N_Peclet
 		(
-			(AlphaDisp * pow(N_Peclet,PowerDisp) * DT)
-			+ (0.67 * DT)
+			log((mag(U)*ds)/D_diffusion)
 		);
 
 		// Field of filtration efficiency
 		volScalarField eta
-			(
-				// Diffusion mechanism
-				exp(
-			    0.875468737
-			    + ((1.0/3.0) * log(As))
-			    - (0.081 * log(N_Ratio))
-			    - (0.715 * log(N_Peclet))
-			    + (0.052 * log(N_vdWaals)))
+		(
+			// Diffusion mechanism
+			exp(
+		      0.875468737
+		    + (0.333 * log_As)
+		    - (0.081 * log_N_Ratio)
+		    - (0.715 * log_N_Peclet)
+		    + (0.052 * log_N_vdW)
+		    )
+
+		    + 
+
+		    // Interception mechanism
+			exp(
+		    - 0.597837001
+		    + log_As
+		    + (1.550 * log_N_Ratio)
+		    - (0.125 * log_N_Peclet)
+		    + (0.125 * log_N_vdW)
+		    )
 
 			    + 
 
-			    // Interception mechanism
-				exp(
-			    - 0.597837001
-			    + log(As)
-			    + (1.550 * log(N_Ratio))
-			    - (0.125 * log(N_Peclet))
-			    + (0.125 * log(N_vdWaals)))			    
+		    // Gravitational deposition mechanism
+			exp(
+		    - 0.744440475
+		    - (1.350 * log_N_Ratio)
+		    - (1.110 * log_N_Peclet)
+		    + (0.053 * log_N_vdW)
+		    + (1.110 * log_N_gravit)
+		    )
 
-  			    + 
-
-			    // Gravitational deposition mechanism
-				exp(
-			    - 0.744440475
-			    - (1.350 * log(N_Ratio))
-			    - (1.110 * log(N_Peclet))
-			    + (0.053 * log(N_vdWaals))
-			    + (1.110 * log(N_gravit)))			    
-			);
+		);
 
 		// Field of filtration coefficient
 		volScalarField Lambda
@@ -160,45 +161,41 @@ int main(int argc, char *argv[])
 				IOobject::NO_READ,
 				IOobject::AUTO_WRITE
 			),
-		    max(Lambda0,
-		    	3.0/(2.0*ds) * (1-theta) * alpha * eta)
+		    (3.0 * (1-theta) * alpha * eta)/(2.0*ds)
 		);
 
+
+		// Transport equations
 		while (simple.correctNonOrthogonal())
 		{
 			fvScalarMatrix MovingStuffEquation
 			(
-				fvm::ddt(Cw)
+				fvm::ddt(theta,Cw)
 				+ fvm::div(phi, Cw)
-				- fvm::laplacian(DispersionCoeff, Cw)
+				- fvm::laplacian(mag(U)*DispTensor, Cw)
 				==
 				- fvm::SuSp(Lambda*mag(U),Cw)
+				+ (kdet*Cs)
 			);
 			MovingStuffEquation.relax();
 			fvOptions.constrain(MovingStuffEquation);
 			MovingStuffEquation.solve();
-			fvOptions.correct(Cw);        
+			fvOptions.correct(Cw);
+		
+
+			fvScalarMatrix StoppedStuffEquation
+			(
+				fvm::ddt(Cs)
+				==
+				- fvm::Sp(kdet,Cs)
+				+ (Lambda*mag(U)*Cw)
+				
+			);
+			StoppedStuffEquation.relax();
+			fvOptions.constrain(StoppedStuffEquation);
+			StoppedStuffEquation.solve();
+			fvOptions.correct(Cs);	
 		}
-
-
-		fvScalarMatrix StoppedStuffEquation
-		(
-			fvm::ddt(Cs)
-			==
-			Lambda * mag(U) * Cw
-		);
-		StoppedStuffEquation.solve();
-	
-		// Bound possible adsorbed concentration 
-		/*volScalarField Cs2
-		(
-		    min(theta0*rho_clay,Cs)
-		);
-
-		volScalarField Cs
-		(
-			Cs2
-		);*/
 
 		// Update porosity field
 		fvScalarMatrix thetaEquation
@@ -210,7 +207,7 @@ int main(int argc, char *argv[])
 		thetaEquation.solve();
 
 		// Calculate clay fraction
-		percentClay = (Cs + (Cw*theta)) / (Cs + rho_sand*(1-refPoro));
+		percentClay = (Cs + (Cw*theta)) / (Cs + rho_sand*(1-theta0));
 
 		//End bits
 		runTime.write();

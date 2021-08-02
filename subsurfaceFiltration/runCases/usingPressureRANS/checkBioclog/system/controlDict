@@ -27,11 +27,10 @@ stopAt          endTime;
 //writeInterval   43200;  
 
 // // To compare pressure signal
-endTime	        320; 
-writeInterval   20; 
+endTime	        86400; 
+writeInterval   3600; 
 
-deltaT          0.05;
-//deltaT         10;
+deltaT          10;
 
 writeControl    runTime;
 
