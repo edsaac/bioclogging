@@ -8,7 +8,7 @@
   clone of previous one
   Uses the same mesh resolution in the xy plane but uses a Bump for the
   z-discretization. Results are similar than the previous case but residuals
-  seem lower. Boundary conditions for omega seem odd. Revised this valus
+  seem lower. Boundary conditions for omega seem odd. Revised this values
   and change
 
 3mmx0.1mmxBumpxAlternativeSSTmm
