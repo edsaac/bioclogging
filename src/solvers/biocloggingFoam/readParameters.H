@@ -47,9 +47,6 @@ dimensionedTensor DispTensor(transportProperties.lookup("DispTensor"));
 Info<< "Reading attachement efficiency (alpha)\n" << endl;
 dimensionedScalar alpha(transportProperties.lookup("alpha"));
 
-Info<< "Reading min Hydraulic Conductivity (Kmin)\n" << endl;
-dimensionedScalar Kmin(transportProperties.lookup("Kmin"));
-
 Info<< "Reading min porosity (thetaMin)\n" << endl;
 dimensionedScalar thetaMin(transportProperties.lookup("thetaMin"));
 

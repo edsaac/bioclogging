@@ -79,6 +79,20 @@ dimensionedScalar D_diffusion
 // Calculate constant nondimensional filtration numbers
 #include "filtrationNumbers.H"
 
+volScalarField K 
+(
+    IOobject
+    (
+        "K",
+        runTime.timeName(),
+        mesh,
+        IOobject::NO_READ,
+        IOobject::AUTO_WRITE
+    ),
+    (sqr(ds) * pow(theta,3) * rho * g) / (180.0 * pow(1-theta,2) * mu)
+);
+
+
 volScalarField percentClay
 (
     IOobject
@@ -90,6 +104,33 @@ volScalarField percentClay
         IOobject::AUTO_WRITE
     ),
     mesh
+);
+
+// Calculate site maximum deposited mass
+volScalarField Smax
+(
+    IOobject
+    (   
+        "Smax",
+        runTime.timeName(),
+        mesh,
+        IOobject::NO_READ,
+        IOobject::AUTO_WRITE
+    ),
+    rho_clay * (theta0 - thetaMin)
+);
+
+volScalarField PhiB
+(
+    IOobject
+    (
+        "PhiB",
+        runTime.timeName(),
+        mesh,
+        IOobject::NO_READ,
+        IOobject::AUTO_WRITE
+    ),
+    1.0 - Cs/Smax
 );
 
 #include "createFvOptions.H"

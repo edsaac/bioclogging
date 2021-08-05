@@ -53,21 +53,7 @@ int main(int argc, char *argv[])
 	{
 
 		// Field of conductivity [L/T] from Kozeny-Carman eq.
-		volScalarField K 
-		(
-			IOobject
-			(
-				"K",
-				runTime.timeName(),
-				mesh,
-				IOobject::NO_READ,
-				IOobject::AUTO_WRITE
-			),
-	    	max(
-	    		Kmin,
-	    		(sqr(ds) * pow(theta,3) * rho * g) / (180.0 * pow(1-theta,2) * mu)
-	    		)
-		);
+    	K = (sqr(ds) * pow(theta,3) * rho * g) / (180.0 * pow(1-theta,2) * mu);
 
 		Info<< "Time = " << runTime.timeName() << nl << endl;
 
@@ -164,6 +150,9 @@ int main(int argc, char *argv[])
 		    (3.0 * (1-theta) * alpha * eta)/(2.0*ds)
 		);
 
+		// Field of filtration coefficient
+		Info<< "Calculate site blocking \n" << endl;
+		PhiB = 1.0 - Cs/Smax;
 
 		// Transport equations
 		while (simple.correctNonOrthogonal())
@@ -174,21 +163,21 @@ int main(int argc, char *argv[])
 				+ fvm::div(phi, Cw)
 				- fvm::laplacian(mag(U)*DispTensor, Cw)
 				==
-				- fvm::SuSp(Lambda*mag(U),Cw)
+				- fvm::SuSp(Lambda*mag(U)*PhiB,Cw)
 				+ (kdet*Cs)
 			);
 			MovingStuffEquation.relax();
 			fvOptions.constrain(MovingStuffEquation);
 			MovingStuffEquation.solve();
 			fvOptions.correct(Cw);
-		
+
 
 			fvScalarMatrix StoppedStuffEquation
 			(
 				fvm::ddt(Cs)
 				==
 				- fvm::Sp(kdet,Cs)
-				+ (Lambda*mag(U)*Cw)
+				+ (Lambda*mag(U)*PhiB*Cw)
 				
 			);
 			StoppedStuffEquation.relax();
@@ -198,13 +187,16 @@ int main(int argc, char *argv[])
 		}
 
 		// Update porosity field
-		fvScalarMatrix thetaEquation
+		theta = theta0 - Cs/rho_clay;
+		/*fvScalarMatrix thetaEquation
 		(
 			fvm::ddt(theta)
 			==
 			- fvc::ddt(Cs) / rho_clay
 		);
 		thetaEquation.solve();
+		*/
+		
 
 		// Calculate clay fraction
 		percentClay = (Cs + (Cw*theta)) / (Cs + rho_sand*(1-theta0));
@@ -215,7 +207,6 @@ int main(int argc, char *argv[])
 		Info<< "ExecutionTime = " << runTime.elapsedCpuTime() << " s"
 		<< "  ClockTime = " << runTime.elapsedClockTime() << " s"
 		<< nl << endl;
-
 
 	}
 
