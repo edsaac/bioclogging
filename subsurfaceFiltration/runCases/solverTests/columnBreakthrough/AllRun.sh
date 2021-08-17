@@ -1,3 +1,0 @@
-biocloggingFoam
-foamToVTK
-paraview
