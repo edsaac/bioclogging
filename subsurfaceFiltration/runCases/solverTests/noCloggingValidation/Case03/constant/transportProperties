@@ -32,7 +32,7 @@ Slope     Slope     [0 0 0 0 0 0 0]     (0.0 0.0 0.0);
 
 //Dispersion
 DispTensor DispTensor [0 1 0 0 0 0 0]
-  (1.0E-1 0.00 0.00 0.00 1.0E-1 0.00 0.00 0.00 1.0E-1);
+  (1.0E-2 0.00 0.00 0.00 1.0E-2 0.00 0.00 0.00 1.0E-2);
 
 //Filtration & clogging
 alpha     alpha     [0 0 0 0 0 0 0]     4.327386E-03;

@@ -64,7 +64,8 @@ int main(int argc, char *argv[])
 			fvOptions.correct(h);
 		}
 
-		// U in this code refers to the Darcy velocity (a.k.a q)
+		// U in this code refers to the Darcy velocity
+		//  the insantaneous velocity would be u = U/theta
 		volVectorField U
 		(
 			IOobject
