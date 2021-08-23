@@ -40,9 +40,9 @@ thetaMin  thetaMin  [0 0 0 0 0 0 0]     0.10;
 
 //Chemical parameters
 Hamaker   Hamaker   [1 2 -2 0 0 0 0]    1.0E-20;
-kBoltz    kBoltz    [1 2 -2 -1 0 0 0]   1.38E-23;
+kBoltz    kBoltz    [1 2 -2 -1 0 0 0]   1.380649E-23;
 Temp      Temp      [0 0 0 1 0 0 0]     298.0;
-kdet      kdet      [0 0 -1 0 0 0 0]    4.18E-6;
+kdet      kdet      [0 0 -1 0 0 0 0]    1.0E-5;
 
 
 
