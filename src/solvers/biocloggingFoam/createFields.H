@@ -73,7 +73,7 @@ volScalarField Cs
 //   >> use this in the Péclet number calculation
 dimensionedScalar D_diffusion
 (
-    (kBoltz*Temp)/(12.0*ppi*mu*dp)
+    (kBoltz*Temp)/(3.0*ppi*mu*dp)
 );
 
 // Calculate constant nondimensional filtration numbers

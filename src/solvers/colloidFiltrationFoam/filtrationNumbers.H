@@ -23,7 +23,7 @@ Info<< "van der Waals: exp("<< log_N_vdW.value() <<")\n" << endl;
 dimensionedScalar log_N_gravit 
 ( 
     log(
-    ppi * pow(dp,4) * (rho_clay - rho) * g / ( 12.0* kBoltz * Temp )
+    ppi * pow(dp,4) * (rho_clay - rho) * g / ( 12.0 * kBoltz * Temp )
     )
 
 );
