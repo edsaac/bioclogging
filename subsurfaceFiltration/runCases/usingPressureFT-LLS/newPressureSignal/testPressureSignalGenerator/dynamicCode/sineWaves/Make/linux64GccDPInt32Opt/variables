@@ -1,0 +1,1 @@
+LIB = $(PWD)/../platforms/$(WM_OPTIONS)/lib/libsineWaves_41fcccd2bd23edd370e32980e2de58802e326d05
